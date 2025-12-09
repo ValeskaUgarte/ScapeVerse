@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>EscapeVerse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header-nav">
+  <div class="logo">
+    <img src="img/logo1.jpg" class="logo1-img">
+  </div>
+  
+   
+  <div class="user-actions">
+    <span id="userStatus" class="card-tag">Invitado</span>
+    <button id="openLogin" class="card-button" style="width:auto; padding:6px 12px; margin-left:10px;">Login</button>
+    <button id="logoutBtn" class="card-button" style="width:auto; padding:6px 12px; margin-left:10px; display:none;">Salir</button>
+    <button id="openProfile" class="card-button" style="width:auto; padding:6px 12px; margin-left:10px; display:none;">Perfil</button>
+  </div>
+</header>
+
+  <!-- Catálogo (página principal) -->
+  <main id="themeSelection" class="theme-selection active catalogo-container">
+    <h2 class="catalogo-titulo">Desafía tu mente. Escapa de la realidad.</h2>
+
+    <!-- Filtros por categoría -->
+    <div class="filters">
+      <button class="filter-btn active" data-cat="todas">Todas</button>
+      <button class="filter-btn" data-cat="andina">Mitología Andina</button>
+      <button class="filter-btn" data-cat="eco">Eco-Aventura</button>
+      <button class="filter-btn" data-cat="misterio">Misterio Histórico</button>
+      <button class="filter-btn" data-cat="ciencia">Ciencia Ficción</button>
+    </div>
+
+    <!-- Grid de historias renderizado desde model.js -->
+    <div class="story-grid" id="catalogGrid"></div>
+  </main>
+
+ <!-- Pantalla de historia (interfaz de juego) -->
+  <<!-- Pantalla de historia (interfaz de juego) -->
+<section id="gameScreen" class="game-screen">
+  <div class="game-container">
+    <!-- Columna izquierda: Imagen de la historia -->
+    <div class="game-sidebar">
+      <div class="game-story-image" id="gameStoryImage"></div>
+      <div class="game-story-info">
+        <h3 id="storyTitleSidebar"></h3>
+        <p id="storyIntroSidebar"></p>
+      </div>
+    </div>
+    
+    <!-- Columna derecha: Contenido del juego -->
+    <div class="game-content">
+      <!-- Barra de energía -->
+      <div class="energy-container">
+        <div class="energy-label">Energía de Decisión</div>
+        <div class="energy-bar-bg">
+          <div id="energyBar" class="energy-bar" style="width: 50%; background: linear-gradient(90deg, #ffaa00, #ff8800);"></div>
+          <span id="energyText" class="energy-text">50%</span>
+        </div>
+      </div>
+      
+      <!-- Texto de la historia -->
+      <div class="story-reading-box">
+        <div id="storyText" class="story-text"></div>
+      </div>
+      
+      <!-- Opciones -->
+      <div id="choices" class="choices"></div>
+      
+      <!-- Acciones -->
+      <div class="game-actions">
+        <button id="saveBtn" class="card-button">💾 Guardar</button>
+        <button id="backCatalogBtn" class="card-button">← Volver</button>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Pantalla de final -->
+  <section id="endingScreen" class="ending-screen">
+  <div id="endingImage" class="ending-image"></div> <!-- NUEVO -->
+  <h2 id="endingTitle"></h2>
+  <div id="endingType" class="ending-type"></div>
+  <div id="endingText" class="story-text"></div>
+  <div class="ending-actions">
+    <button id="restartBtn" class="card-button">Jugar de nuevo</button>
+    <button id="backCatalogBtn2" class="card-button">Volver a categorías</button>
+  </div>
+</section>
+  
+<section id="endingScreen" class="ending-screen">
+  <!-- contenido del final -->
+</section>
+
+<!-- NUEVO: PERFIL DEL JUGADOR -->
+<!-- Pantalla de LOGIN -->
+<section id="loginScreen" class="page-container">
+  <div class="page-box">
+    <h2>Iniciar Sesión</h2>
+    <p class="tip">Ingresa con tu cuenta para guardar partidas y ver estadísticas.</p>
+    <div class="form-group">
+      <input type="text" id="loginUser" placeholder="Usuario" />
+    </div>
+    <div class="form-group">
+      <input type="password" id="loginPass" placeholder="Contraseña" />
+    </div>
+    <button id="loginBtn" class="card-button">Entrar</button>
+    <p style="margin-top: 20px; color: #bbb;">¿No tienes cuenta? <a href="#" id="goToRegister" style="color: #a566ff;">Regístrate aquí</a></p>
+    <button id="backCatalogBtnLogin" class="card-button" style="margin-top: 15px;">Volver al catálogo</button>
+  </div>
+</section>
+
+<!-- Pantalla de REGISTRO -->
+<section id="registerScreen" class="page-container">
+  <div class="page-box">
+    <h2>Crear Cuenta</h2>
+    <p class="tip">Crea tu cuenta para guardar partidas, estadísticas y crear tus propias historias.</p>
+    <div class="form-group">
+      <input type="text" id="registerUser" placeholder="Usuario" />
+    </div>
+    <div class="form-group">
+      <input type="email" id="registerEmail" placeholder="Email (opcional)" />
+    </div>
+    <div class="form-group">
+      <input type="password" id="registerPass" placeholder="Contraseña" />
+    </div>
+    <div class="form-group">
+      <input type="password" id="registerPassConfirm" placeholder="Confirmar Contraseña" />
+    </div>
+    <button id="registerBtn" class="card-button">Crear cuenta</button>
+    <p style="margin-top: 20px; color: #bbb;">¿Ya tienes cuenta? <a href="#" id="goToLogin" style="color: #a566ff;">Inicia sesión aquí</a></p>
+    <button id="backCatalogBtnRegister" class="card-button" style="margin-top: 15px;">Volver al catálogo</button>
+  </div>
+</section>
+
+<!-- Pantalla de PERFIL COMPLETO -->
+<section id="profileScreen" class="page-container">
+  <div class="profile-full">
+    <!-- Header del perfil con avatar -->
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <div class="avatar-circle">
+          <span id="avatarInitial">?</span>
+        </div>
+        <div class="profile-level">
+          <span id="playerLevel">Nivel 1</span>
+        </div>
+      </div>
+      <div class="profile-info">
+        <h2 id="profileNameFull" style="color: var(--color-acento-neón); margin-bottom: 10px;">Usuario</h2>
+        <p style="color: #bbb; font-size: 0.9em;">Aventurero de EscapeVerse</p>
+        <div class="profile-xp-bar">
+          <div class="xp-fill" id="xpBar" style="width: 0%"></div>
+          <span class="xp-text" id="xpText">0 / 100 XP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadísticas principales -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🎮</div>
+        <div class="stat-value" id="profileGames2">0</div>
+        <div class="stat-label">Partidas Jugadas</div>
+      </div>
+      <div class="stat-card success">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-value" id="profileWins2">0</div>
+        <div class="stat-label">Victorias</div>
+      </div>
+      <div class="stat-card failure">
+        <div class="stat-icon">💔</div>
+        <div class="stat-value" id="profileFails2">0</div>
+        <div class="stat-label">Derrotas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-value" id="winRate">0%</div>
+        <div class="stat-label">Tasa de Éxito</div>
+      </div>
+    </div>
+
+    <!-- Logros -->
+    <div class="achievements-section">
+      <h3 style="color: var(--color-acento-neón); margin-bottom: 20px;">🏅 Logros Desbloqueados</h3>
+      <div class="achievements-grid" id="achievementsGrid">
+        <div class="achievement-card locked">
+          <div class="achievement-icon">🎯</div>
+          <div class="achievement-name">Primer Paso</div>
+          <div class="achievement-desc">Completa tu primera historia</div>
+        </div>
+        <div class="achievement-card locked">
+          <div class="achievement-icon">⚔️</div>
+          <div class="achievement-name">Guerrero</div>
+          <div class="achievement-desc">Gana 5 partidas</div>
+        </div>
+        <div class="achievement-card locked">
+          <div class="achievement-icon">🌟</div>
+          <div class="achievement-name">Maestro</div>
+          <div class="achievement-desc">Gana 10 partidas</div>
+        </div>
+        <div class="achievement-card locked">
+          <div class="achievement-icon">👑</div>
+          <div class="achievement-name">Leyenda</div>
+          <div class="achievement-desc">Completa todas las historias</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partidas guardadas -->
+    <div class="saved-games-section">
+      <h3 style="color: var(--color-acento-neón); margin-bottom: 20px;">💾 Partidas Guardadas</h3>
+      <div id="savedGamesList" class="saved-games-list">
+        <p style="color: #bbb; text-align: center;">No tienes partidas guardadas</p>
+      </div>
+    </div>
+
+    <button id="backCatalogBtn3" class="card-button" style="margin-top: 30px; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto; display: block;">Volver al catálogo</button>
+  </div>
+</section>
+
+  <!-- Scripts MVC -->
+  <script src="js/model.js"></script>
+  <script src="js/view.js"></script>
+  <script src="js/controller.js"></script>
+</body>
+</html>
+<div id="latestCarousel" style="margin-top: 60px;"></div>
+
