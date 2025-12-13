@@ -63,7 +63,7 @@ showStoriesInCategory(categoryKey) {
   grid.innerHTML = '';
   grid.className = 'story-grid';
   
-  const categoryStories = catalog.filter(story => story.key === categoryKey);
+  const categoryStories = catalog.filter(story => story.category === categoryKey);
   
   categoryStories.forEach(story => {
     const storyCard = document.createElement('div');
@@ -196,27 +196,30 @@ setStoryHeader(themeKey) {
     const container = document.getElementById('latestCarousel');
     if (!container) return;
     
+    
     container.innerHTML = '<h3 style="color: var(--color-acento-neón); text-align: center; margin-bottom: 20px;">Últimas Historias Subidas</h3>';
     
     const carousel = document.createElement('div');
     carousel.className = 'carousel-container';
     
-    latestStories.forEach(story => {
-      const card = document.createElement('div');
-      card.className = 'carousel-card';
-      card.innerHTML = `
-        <div class="carousel-img" style="background-image: url('${story.cover}')"></div>
-        <div class="carousel-info">
-          <h4>${story.title}</h4>
-          <button class="play-btn" onclick="startGameNow('${story.key}')">Jugar</button>
-        </div>
-      `;
-      carousel.appendChild(card);
-    });
+    // latestStories.forEach(story => {
+    //   const card = document.createElement('div');
+    //   card.className = 'carousel-card';
+    //   card.innerHTML = `
+    //     <div class="carousel-img" style="background-image: url('${story.cover}')"></div>
+    //     <div class="carousel-info">
+    //       <h4>${story.title}</h4>
+    //       <button class="play-btn" onclick="startGameNow('${story.key}')">Jugar</button>
+    //     </div>
+    //   `;
+    //   carousel.appendChild(card);
+    // });
     
     container.appendChild(carousel);
   }
 };
+
+
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {

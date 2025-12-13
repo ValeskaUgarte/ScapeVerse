@@ -118,7 +118,7 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 280px;
+  max-width: 200px;
 }
 
 .category-card:hover { 
@@ -129,8 +129,9 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
 .cat-header {
   width: 100%;
   height: 180px;
-  background-size: cover; /* Cambiado de contain a cover */
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;  /* ← AÑADE ESTA LÍNEA */
   position: relative;
   flex-shrink: 0;
 }
@@ -164,7 +165,7 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
 /* GRID HISTORIAS 3 COLUMNAS CENTRADO */
 .story-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* ← DE 3 A 4 O 5 */
   gap: 20px;
   justify-items: center;
 }
@@ -179,7 +180,7 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 280px;
+  max-width: 200px;
 }
 
 .story-card:hover {
@@ -191,6 +192,7 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
   height: 180px;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;  /* ← AÑADE ESTA LÍNEA */
   flex-shrink: 0;
 }
 
@@ -458,7 +460,7 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
 }
 
 .carousel-card {
-  min-width: 220px;
+  min-width: 200px;
   background-color: var(--color-fondo-secundario);
   border: 2px solid var(--color-acento-neón);
   border-radius: 12px;
@@ -474,9 +476,10 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
 }
 
 .carousel-img {
-  height: 140px;
+  height: auto;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;  /* ← AÑADE ESTA LÍNEA */
 }
 
 .carousel-info {
@@ -509,7 +512,7 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
 
 /* Para achicar las imágenes del carrusel: */
 .carousel-img {
-  height: 120px;  /* Cambié de 140px a 120px */
+  height: autopx;  /* Cambié de 140px a 120px */
   background-size: cover;
   background-position: center;
 }
@@ -852,12 +855,14 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
   }
 }
 .ending-image {
-  width: 100%;
-  max-width: 600px;
-  height: 300px;
+  width: 400px !important;
+  height: 400px !important;
+  max-width: 400px !important;
+  min-height: 400px !important;
   margin: 0 auto 30px;
-  background-size: cover;
-  background-position: center;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   border: 3px solid var(--color-acento-neón);
   border-radius: 15px;
   box-shadow: var(--sombra-neón);
@@ -907,10 +912,12 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
     font-size: 1.8em;
   }
   
-  .category-grid, .story-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
+  .category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ← DE 3 A 4 O 5 */
+  gap: 20px;
+  justify-items: center;
+}
   
   .category-card {
     max-width: 100%;
@@ -1056,6 +1063,7 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
   height: 250px;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;  /* ← AÑADE ESTA LÍNEA */
   border-bottom: 3px solid var(--color-acento-neón);
 }
 
@@ -1246,4 +1254,245 @@ h1, h2, h3 { color: var(--color-texto-principal); font-weight: bold; }
   .game-actions {
     flex-direction: column;
   }
+}
+
+/* ADAPTACIÓN DE IMÁGENES A CUADRADOS - SOLO ESTO */
+.cat-header,
+.story-img,
+.game-story-image,
+.carousel-img,
+.ending-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Esto las hace cuadradas */
+  background-size: cover; /* Asegura que cubra todo el espacio */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita repetición */
+}
+
+/* Para la imagen del juego (sidebar) */
+.game-story-image {
+  height: auto; /* Quita altura fija */
+}
+
+/* ============================================
+   FORZAR IMÁGENES CUADRADAS - ESPECÍFICO
+   ============================================ */
+
+/* 1. CATEGORÍAS - Catálogo principal */
+.category-grid .category-card .cat-header,
+.story-grid .story-card .story-img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  flex-shrink: 0 !important;
+}
+
+/* 2. PANTALLA DE JUEGO - Sidebar */
+.game-sidebar .game-story-image {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border-bottom: 3px solid var(--color-acento-neón) !important;
+}
+
+/* 3. CARRUSEL - Últimas historias */
+#latestCarousel .carousel-container .carousel-card .carousel-img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 4. PANTALLA DE FINAL */
+#endingScreen .ending-image {
+  width: 100% !important;
+  max-width: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  margin: 0 auto 30px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border: 3px solid var(--color-acento-neón) !important;
+  border-radius: 15px !important;
+  box-shadow: var(--sombra-neón) !important;
+}
+
+/* 5. FALLBACK PARA NAVEGADORES ANTIGUOS */
+@supports not (aspect-ratio: 1 / 1) {
+  .category-card::before,
+  .story-card::before,
+  .carousel-card::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+  
+  .cat-header,
+  .story-img,
+  .carousel-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .category-card,
+  .story-card,
+  .carousel-card {
+    position: relative !important;
+  }
+}
+
+/* ============================================
+   MÁS COLUMNAS - MENOS ESPACIO LATERAL
+   ============================================ */
+
+/* Para pantallas GRANDES (escritorio) */
+@media (min-width: 1024px) {
+  .category-grid,
+  .story-grid {
+    grid-template-columns: repeat(4, 1fr) !important; /* 5 columnas */
+    gap: 15px !important;
+  }
+}
+
+/* Para pantallas MEDIANAS (tablets grandes) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .category-grid,
+  .story-grid {
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 columnas */
+    gap: 12px !important;
+  }
+}
+
+/* Para pantallas PEQUEÑAS (tablets) */
+@media (min-width: 480px) and (max-width: 767px) {
+  .category-grid,
+  .story-grid {
+    grid-template-columns: repeat(3, 1fr) !important; /* 3 columnas */
+    gap: 10px !important;
+  }
+}
+
+/* Para móviles (ya está bien) */
+@media (max-width: 479px) {
+  .category-grid,
+  .story-grid {
+    grid-template-columns: 1fr !important; /* 1 columna */
+    gap: 10px !important;
+  }
+}
+
+/* REDUCIR ANCHO MÁXIMO DE LAS CAJAS para que quepan más */
+.category-card,
+.story-card {
+  max-width: 200px !important; /* Más pequeñas */
+  width: 100% !important;
+}
+
+/* Asegurar que las imágenes mantengan proporción */
+.category-card .cat-header,
+.story-card .story-img {
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+}
+
+/* Adaptación automática de TODAS las imágenes */
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Para logos específicos */
+.logo1-img {
+  max-height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Para imágenes en perfiles y avatares */
+.profile-avatar img,
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Para iconos en estadísticas y logros */
+.stat-icon img,
+.achievement-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Para cualquier imagen dentro de cards */
+.category-card img,
+.story-card img,
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FINALES - Imagen de ending */
+.ending-image,
+#endingImage {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  object-fit: cover;
+}
+
+.ending-image img,
+#endingImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CARRUSEL - Forzar tamaño uniforme */
+.carousel-card {
+  min-width: 200px;
+  max-width: 200px;
+  height: auto;
+}
+
+.carousel-img {
+  height: 120px !important;
+  min-height: 120px;
+  max-height: 120px;
+  width: 100%;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden;
+}
+
+.carousel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Forzar adaptación en backgrounds */
+[style*="background-image"] {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }

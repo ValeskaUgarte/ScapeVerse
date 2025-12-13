@@ -5,14 +5,14 @@ const Controller = {
   currentEnergy: 50,
   user: null,
 
-  startGame(theme) {
-    if (!games[theme]) {
+startGame(theme) {
+    if (!games[theme]) { 
       alert('Juego no encontrado: ' + theme);
       return;
     }
     
     this.currentTheme = theme;
-    this.currentGame = games[theme];
+    this.currentGame = games[theme]; // CORREGIDO: usar games en vez de catalog
     this.currentNode = 'start';
     this.currentEnergy = 50;
     
@@ -237,7 +237,7 @@ loadSavedGame(gameKey) {
   
   const save = u.saves[gameKey];
   this.currentTheme = gameKey;
-  this.currentGame = games[gameKey];
+  this.currentGame = catalog[gameKey];
   this.currentNode = save.node;
   this.currentEnergy = 50;
   
